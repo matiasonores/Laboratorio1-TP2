@@ -35,12 +35,14 @@ namespace Tp_Numero_2.Clases
         int individuales = 0; // esta mal
         int EdadEntre10y15 = 0;
         double recaudacionTotal = 0;
+        double recaudacionPasaporte = 0;
         int totalGrupos = 0;
         int cantPasaportes = 0;
         int cantPersonasGrupoMenosde4 = 0;
         int cantPersonasPasaporte = 0; // esta mal
         int totalEdades;
         int contFactura = 0;
+
         public void Iniciar()
         {
             MostrarMenu();
@@ -68,24 +70,30 @@ namespace Tp_Numero_2.Clases
                         break;
 
                     case ConsoleKey.D3:
-                       int cantPersonasSinPasaporte = CasoPasaporte();
-                        if (cantPersonasSinPasaporte != 0)
+                        int cantPersonasSinPasaporte = CasoPasaporte();
+                        while (cantPersonasSinPasaporte > 3)
                         {
-                          if (cantPersonasSinPasaporte > 1)
-                            {
-                                CasoGrupalMenos4();
-                                
-                            } else
-                            {
-                                CasoIndividual();
-                            }
+                            cantPersonasSinPasaporte = CasoPasaporte(cantPersonasSinPasaporte);
+                        }
+                        if (cantPersonasSinPasaporte != 0 && cantPersonasSinPasaporte > 1)
+                        {
+                            CasoGrupalMenos4();
+
+                        }
+                        else if (cantPersonasSinPasaporte == 1)
+                        {
+                            CasoIndividual();
                         }
 
-                        break;
 
+                        break;
+                    case ConsoleKey.D4:
+                        MostrarResultados();
+                        return;
 
                     default:
-                        Console.WriteLine("4");
+                Console.WriteLine("Ingreso un caracter invalido");
+
                         break;
 
                 }
@@ -101,7 +109,7 @@ namespace Tp_Numero_2.Clases
 
         void FinalizarDia()
         {
-           int  cantPersonasFinal = cantPersonasPasaporte + cantPersonasGrupoMenosde4+ individuales;
+            int cantPersonasFinal = cantPersonasPasaporte + cantPersonasGrupoMenosde4 + individuales;
             double promedio = totalEdades / cantPersonasFinal;
             Console.WriteLine("El Promedio de edades es de:    {0}", promedio);
             Console.WriteLine("La cantidad de pasaportes es:   {0}", cantPasaportes);
@@ -111,9 +119,9 @@ namespace Tp_Numero_2.Clases
         }
 
 
-        public int CasoPasaporte()
+        public int CasoPasaporte(int cantPersonas = 0)
         {
-            int cantPersonas = 0;
+            //int cantPersonas = 0;
             int cantMayores21 = 0;
             int cantMenores16 = 0;
             int cantMenores = 0;
@@ -123,16 +131,20 @@ namespace Tp_Numero_2.Clases
             int cantPersonasAfueraPasaporte = 0;
             int edadtotal = 0;
             double descuentoTotal = 0;
-            
 
-            Console.WriteLine("Ingrese Cantidad de Personas");
-            cantPersonas = Convert.ToInt32(Console.ReadLine());
+            if (cantPersonas == 0)
+            {
+                Console.WriteLine("Ingrese Cantidad de Personas");
+                cantPersonas = Convert.ToInt32(Console.ReadLine());
+            }
             //if (cantPersonas > 3 && cantPersonas < 11)
             //{
             //    Console.WriteLine("Cuantas personas son mayores de 21 años");
             //    cantMayores21 = Convert.ToInt32(Console.ReadLine());
             //    cantMenores21 = cantMayores21 - cantPersonas;
             //}
+
+
             if (cantPersonas < 4)
             {
                 // MAYOR DE 3
@@ -146,26 +158,67 @@ namespace Tp_Numero_2.Clases
                     switch (siOno)
                     {
                         case "s":
+                            Console.Clear();
                             CasoPasaporte();
                             return 0;
                         case "n":
-                            salir = true;
-                            break;
+                            Console.Clear();
+                            return 0;
+
                     }
                 }
             }
-            if (cantPersonas > 10)
+            // prueba abajo
+
+
+
+
+
+
+            if (cantPersonas >= 10)
             {
                 cantPersonasAfueraPasaporte = cantPersonas - 10;
                 cantPersonas = 10;
-            } 
+            }
+            bool sePuede;
+            Console.WriteLine("Ingrese Cantidad de Menores a 16 años que van a ingresar");
+            int cantMenores16anios = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Ingrese Cantidad de Mayores responsables que van a ingresar");
+            int cantMayoresa21anios = Convert.ToInt32(Console.ReadLine());
+            if (cantMayoresa21anios > 1)
+            {
+                sePuede = true;
+            }
+            else if (cantMenores16anios > 5 && cantMayoresa21anios < 2)
+            {
+                sePuede = false;
+            }
+            else if (cantMenores16anios <= 5 && cantMayoresa21anios == 1)
+            {
+                sePuede = true;
+            }
+            else
+            {
+                sePuede = true;
+            }
+            // termina prueba
+            Console.Clear();
+            if (!sePuede)
+            {
+                Console.WriteLine("No se cumple con las normas de Acceso al Parque!\nRecuerda que necesitas tener 1 adulto cada 5 menores de 16 años");
+                Console.WriteLine();
+                Console.WriteLine("Precione una tecla para volver al Menu Principal.");
+                Console.ReadKey();
+                Console.Clear();
+                return 0;
+            }
             Console.WriteLine("Ingrese Edades:  ");
-           for (int i = 0; i< cantPersonas; i++)
+            for (int i = 0; i < cantPersonas; i++)
             {
                 contPersonas++;
                 double total = 0;
                 int edad = 0;
-                Console.WriteLine("Ingrese la edad de la persona: {0}", (i+1));
+                Console.WriteLine("Ingrese la edad de la persona: {0}", (i + 1));
                 edad = Convert.ToInt32(Console.ReadLine());
                 if (edad >= 21)
                 {
@@ -176,24 +229,26 @@ namespace Tp_Numero_2.Clases
                 {
                     cantMenores16++;
                     total = 1500;
-                } else
+                }
+                else
                 {
+
                     cantMenores++;
                     total = CalcularDescuentoMenores(edad);
-                    descuentoTotal += total;
-                    if (edad >=10 && edad <= 15)
+                    //descuentoTotal += entrada - total;
+                    if (edad >= 10 && edad <= 15)
                     {
                         cantMenoresEntre10y15++;
                     }
                 }
                 edadtotal += edad;
                 totalrecaudado += total;
-              }
-           // 15 % descuento
+            }
+            // 15 % descuento
             double descuento = totalrecaudado * 0.15;
             descuentoTotal += descuento;
             totalrecaudado -= descuento;
-            Console.WriteLine("El monto a pagar es ${0:C2}. Desea proseguir? (S/N)", totalrecaudado);
+            Console.WriteLine("El monto a pagar es {0:C2}. Desea proseguir? (S/N)", totalrecaudado);
             string compra = Console.ReadLine();
             compra = compra.ToLower();
             switch (compra)
@@ -204,11 +259,12 @@ namespace Tp_Numero_2.Clases
                         ConfirmarCompra(totalrecaudado, cantPersonas, descuentoTotal);
                         EdadEntre10y15 += cantMenoresEntre10y15;
                         recaudacionTotal += totalrecaudado;
+                        recaudacionPasaporte += totalrecaudado;
                         totalEdades += edadtotal;
                         cantPersonasPasaporte = cantPersonas;
                         cantPasaportes++;
                         return cantPersonasAfueraPasaporte;
-                       
+
                     }
                 case "n":
                     {
@@ -222,7 +278,7 @@ namespace Tp_Numero_2.Clases
                         Console.WriteLine("El monto a pagar es ${0:C2}. Desea proseguir? (S/N)", totalrecaudado);
                         break;
                     }
-                   
+
             }
             return cantPersonasAfueraPasaporte;
 
@@ -381,11 +437,11 @@ namespace Tp_Numero_2.Clases
             }
             else if (edad < 11)
             {
-                entradatotal =  entrada * 0.50;
+                entradatotal = entrada * 0.50;
             }
             else
             {
-                entradatotal = entrada * 0.75;
+                entradatotal = entrada * 0.80;
             }
 
             return entradatotal;
@@ -420,7 +476,7 @@ namespace Tp_Numero_2.Clases
             }
 
             Console.WriteLine("Impresión finalizada.");
-        Console.Clear();
+            Console.Clear();
 
             //{
             //    Console.WriteLine("Imprimiendo...");
@@ -435,10 +491,10 @@ namespace Tp_Numero_2.Clases
             Console.WriteLine("--------------------");
             Console.WriteLine($"Fecha:   {DateTime.Now.ToString()}");
             Console.WriteLine("--------------------");
-            Console.WriteLine("Descripción           Precio - Entrada: {0:C}",entrada);
+            Console.WriteLine("Descripción           Precio - Entrada: {0:C}", entrada);
             Console.WriteLine("--------------------");
             Console.WriteLine("Total sin Descuento        {0:C}", (descuentototal + total));
-            Console.WriteLine("Descuento Total            {0:C}",descuentototal);
+            Console.WriteLine("Descuento Total            {0:C}", descuentototal);
             Console.WriteLine("--------------------");
             Console.WriteLine("Total:                {0:C}", total);
             Console.WriteLine(" ");
@@ -520,9 +576,43 @@ namespace Tp_Numero_2.Clases
                 Console.Clear();
             }
         }
+        // Al final Mostrar todo esto: CAPO
+        //        Total de grupos: 4 - Personas total: 16
+        //         Recaudación: con Pasaportes: $ 13.665,00 Individuales: $4500,00 Total: $ 18.165,00
+        //         Personas con pasaporte: 13. Personas entre 10 y 15: 2
+        //         Edad promedio: 16,375
         public void MostrarResultados()
         {
-            // AL FINAL UN MOSTRAR RESULTADO 
+            int totalPersonas = cantPersonasPasaporte + cantPersonasGrupoMenosde4 + individuales;
+            if (totalPersonas != 0)
+            {
+
+            double totalIndividuales = individuales * entrada;
+            double totalIndividualesPasaporte = totalIndividuales + recaudacionPasaporte;
+            double edadPromedio = totalEdades / totalPersonas;
+            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+            Console.WriteLine("El total de grupos fue de: {0} - Personas totales: {1}", totalGrupos, totalPersonas);
+            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+            Console.WriteLine("Recaudación: con Pasaportes: {0:C2} - Individuales: {1:C2} - - - Total: {2:C2}", recaudacionPasaporte, totalIndividuales, totalIndividualesPasaporte);
+            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+            Console.WriteLine("Personas con Pasaporte: {0}. Personas entre 10 y 15: {1}", cantPersonasPasaporte, EdadEntre10y15);
+            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+            Console.WriteLine("Edad Promedio: {0}", edadPromedio);
+            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+            Console.WriteLine("      ");
+            Console.WriteLine("      ");
+            Console.WriteLine("      ");
+            Console.WriteLine("      ");
+            Console.WriteLine("      ");
+            } else
+            {
+                Console.WriteLine("No ingreso nadie al parque :c estamos en bancarota ");
+
+            }
+
+            Console.WriteLine(" Precione una tecla para Salir: ");
+            Console.ReadKey();
+            Console.Clear();
         }
 
     }

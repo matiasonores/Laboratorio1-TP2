@@ -43,6 +43,7 @@ namespace Tp_Numero_2.Clases
         int totalEdades;
         int contFactura = 0;
 
+
         public void Iniciar()
         {
             MostrarMenu();
@@ -53,11 +54,12 @@ namespace Tp_Numero_2.Clases
 
             Console.WriteLine("1-Ingresar pase individual");
             Console.WriteLine("2-Ingresar pase grupal: menor a 4 personas");
-            Console.WriteLine("3-Ingresar pase grupal: 4 a 10 personas");
-            Console.WriteLine("4-Finalizar jornada del dia");
+            Console.WriteLine("3-Ingresar pase grupal: 4 a 10 personas"); 
+            Console.WriteLine("4-Mostrar caja");
+            Console.WriteLine("5-Finalizar jornada del dia");
             ConsoleKeyInfo opcion = Console.ReadKey();
             Console.Clear();
-            while (opcion.Key != ConsoleKey.D4)
+            while (true)
             {
                 switch (opcion.Key)
                 {
@@ -88,10 +90,24 @@ namespace Tp_Numero_2.Clases
 
                         break;
                     case ConsoleKey.D4:
+                        //Console.Clear();
                         MostrarResultados();
-                        return;
+                        break;
 
-                    default:
+                    case ConsoleKey.D5:
+                        string salir;
+                        Console.WriteLine("Esta seguro que quiere finalizar la jornada? Presione S para confirmar");
+                        salir = Console.ReadLine();
+                        if (salir.ToLower() == "s")
+                        {
+                            MostrarResultados();
+                            return;
+                        }
+                        Console.Clear();
+                        break;
+
+
+                            default:
                 Console.WriteLine("Ingreso un caracter invalido");
 
                         break;
@@ -100,7 +116,8 @@ namespace Tp_Numero_2.Clases
                 Console.WriteLine("1-Ingresar pase individual");
                 Console.WriteLine("2-Ingresar pase grupal: menor a 4 personas");
                 Console.WriteLine("3-Ingresar pase grupal: 4 a 10 personas");
-                Console.WriteLine("4-Finalizar jornada del dia");
+                Console.WriteLine("4-Mostrar caja");
+                Console.WriteLine("5-Finalizar jornada del dia");
                 opcion = Console.ReadKey();
                 Console.Clear();
 
@@ -121,15 +138,16 @@ namespace Tp_Numero_2.Clases
 
         public int CasoPasaporte(int cantPersonas = 0)
         {
-            //int cantPersonas = 0;
+           
             int cantMayores21 = 0;
+            int cantMenores3 = 0;
             int cantMenores16 = 0;
             int cantMenores = 0;
             int cantMenoresEntre10y15 = 0;
-            int contPersonas = 0;
             double totalrecaudado = 0;
             int cantPersonasAfueraPasaporte = 0;
             int edadtotal = 0;
+            int contPersonas = 0;
             double descuentoTotal = 0;
 
             if (cantPersonas == 0)
@@ -215,6 +233,7 @@ namespace Tp_Numero_2.Clases
             Console.WriteLine("Ingrese Edades:  ");
             for (int i = 0; i < cantPersonas; i++)
             {
+             
                 contPersonas++;
                 double total = 0;
                 int edad = 0;
@@ -240,14 +259,21 @@ namespace Tp_Numero_2.Clases
                     {
                         cantMenoresEntre10y15++;
                     }
+                    if (edad <= 3)
+                    {
+                        cantMenores3++;
+                       
+                    }
                 }
                 edadtotal += edad;
                 totalrecaudado += total;
             }
+            double correccionDescMen3 =cantMenores3 * (150 * 0.15);
             // 15 % descuento
             double descuento = totalrecaudado * 0.15;
-            descuentoTotal += descuento;
+            descuentoTotal += (descuento-correccionDescMen3);
             totalrecaudado -= descuento;
+            totalrecaudado += correccionDescMen3;
             Console.WriteLine("El monto a pagar es {0:C2}. Desea proseguir? (S/N)", totalrecaudado);
             string compra = Console.ReadLine();
             compra = compra.ToLower();
@@ -256,12 +282,12 @@ namespace Tp_Numero_2.Clases
                 case "s":
                     {
                         Console.Clear();
-                        ConfirmarCompra(totalrecaudado, cantPersonas, descuentoTotal);
+                        ConfirmarCompra(totalrecaudado, contPersonas, descuentoTotal);
                         EdadEntre10y15 += cantMenoresEntre10y15;
                         recaudacionTotal += totalrecaudado;
                         recaudacionPasaporte += totalrecaudado;
                         totalEdades += edadtotal;
-                        cantPersonasPasaporte = cantPersonas;
+                        cantPersonasPasaporte += contPersonas;
                         cantPasaportes++;
                         return cantPersonasAfueraPasaporte;
 
@@ -379,7 +405,8 @@ namespace Tp_Numero_2.Clases
                             contador10y15++;
                         }
                         total += CalcularDescuentoMenores(edades);
-                        descuentoTotal += CalcularDescuentoMenores(edades);
+                        //descuentoTotal += CalcularDescuentoMenores(edades);
+ 
                     }
                     else
                     {
@@ -395,6 +422,8 @@ namespace Tp_Numero_2.Clases
                 {
                     Console.Clear();
                     Console.WriteLine("No pueden Ingresar menores de 16 sin un Mayor Responsable.");
+                    Console.ReadKey();
+                    Console.Clear();
                     return;
                 }
                 else
@@ -587,9 +616,9 @@ namespace Tp_Numero_2.Clases
             if (totalPersonas != 0)
             {
 
-            double totalIndividuales = individuales * entrada;
+            double totalIndividuales = (individuales + cantPersonasGrupoMenosde4) * entrada;
             double totalIndividualesPasaporte = totalIndividuales + recaudacionPasaporte;
-            double edadPromedio = totalEdades / totalPersonas;
+            double edadPromedio = ((double)totalEdades / totalPersonas);
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
             Console.WriteLine("El total de grupos fue de: {0} - Personas totales: {1}", totalGrupos, totalPersonas);
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
@@ -597,7 +626,7 @@ namespace Tp_Numero_2.Clases
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
             Console.WriteLine("Personas con Pasaporte: {0}. Personas entre 10 y 15: {1}", cantPersonasPasaporte, EdadEntre10y15);
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-            Console.WriteLine("Edad Promedio: {0}", edadPromedio);
+            Console.WriteLine("Edad Promedio: {0:F3}", edadPromedio);
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
             Console.WriteLine("      ");
             Console.WriteLine("      ");
@@ -606,8 +635,20 @@ namespace Tp_Numero_2.Clases
             Console.WriteLine("      ");
             } else
             {
-                Console.WriteLine("No ingreso nadie al parque :c estamos en bancarota ");
-
+                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+                Console.WriteLine("El total de grupos fue de: {0} - Personas totales: {1}", 0.00, 0.00);
+                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+                Console.WriteLine("Recaudación: con Pasaportes: {0:C2} - Individuales: {1:C2} - - - Total: {2:C2}", 0.00, 0.00, 0.00);
+                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+                Console.WriteLine("Personas con Pasaporte: {0}. Personas entre 10 y 15: {1}", 0.00, 0.00);
+                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+                Console.WriteLine("Edad Promedio: {0:F2}", 0.00);
+                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
             }
 
             Console.WriteLine(" Precione una tecla para Salir: ");

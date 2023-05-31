@@ -1,0 +1,7 @@
+C:\Users\Rodrigo\Desktop\c# facu\Laboratorio1-TP2-develop\Tp Numero 2\Tp Numero 2\bin\Debug\Tp Numero 2.exe.config
+C:\Users\Rodrigo\Desktop\c# facu\Laboratorio1-TP2-develop\Tp Numero 2\Tp Numero 2\bin\Debug\Tp Numero 2.exe
+C:\Users\Rodrigo\Desktop\c# facu\Laboratorio1-TP2-develop\Tp Numero 2\Tp Numero 2\bin\Debug\Tp Numero 2.pdb
+C:\Users\Rodrigo\Desktop\c# facu\Laboratorio1-TP2-develop\Tp Numero 2\Tp Numero 2\obj\Debug\Tp Numero 2.csproj.AssemblyReference.cache
+C:\Users\Rodrigo\Desktop\c# facu\Laboratorio1-TP2-develop\Tp Numero 2\Tp Numero 2\obj\Debug\Tp Numero 2.csproj.CoreCompileInputs.cache
+C:\Users\Rodrigo\Desktop\c# facu\Laboratorio1-TP2-develop\Tp Numero 2\Tp Numero 2\obj\Debug\Tp Numero 2.exe
+C:\Users\Rodrigo\Desktop\c# facu\Laboratorio1-TP2-develop\Tp Numero 2\Tp Numero 2\obj\Debug\Tp Numero 2.pdb

@@ -13,7 +13,7 @@ namespace Ejercicio_Parque
         {
            CircuitoAventura circuitoAventura = new CircuitoAventura();
             circuitoAventura.Iniciar();
-            circuitoAventura.MostrarResultados();
+            //circuitoAventura.MostrarResultados();
             Console.ReadKey();
         }
 

@@ -1,34 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Tp_Numero_2.Clases
-{
-    // VERIFICAR EDADES NEGATIVAS y 0
-
-
-    //    Como en muchas situaciones grupos familiares han solicitado ingreso al mismo, el parque implementó un sistema
-    //    de “pasaportes” grupales(mínimo 4 personas, máximo 10), donde se permite el ingreso de menores con la
-    //   siguiente condición:
-    // Por cada 5 menores deberá ingresar un adulto responsable(mayor de 21 años)
-    // El pasaporte incluye un descuento del 15% para grupos desde 4 a 10 personas.
-    // EL grupo también puede ser formado por personas mayores de edad, es decir un grupo con descuento,
-    //donde no hay menores a 16.
-    //En caso de los menores las entradas se fijaron con los siguientes valores
-    // De 0 a 3 años pagan solo el seguro que equivale al 10% de la entrada, es decir $ 150. En este caso no se
-    //aplica el descuento del pasaporte
-    // De 4 a 10 años el valor del ingreso es el 50% de la entrada, es decir $ 750
-    // De 11 a 15 años el valor del ingreso es el 80% de la entrada, es decir $ 1200
-
-
-
-
-
     public class CircuitoAventura
     {
         double entrada = 1500.00;
@@ -52,11 +21,23 @@ namespace Tp_Numero_2.Clases
         void MostrarMenu()
         {
 
-            Console.WriteLine("1-Ingresar pase individual");
-            Console.WriteLine("2-Ingresar pase grupal: menor a 4 personas");
-            Console.WriteLine("3-Ingresar pase grupal: 4 a 10 personas"); 
-            Console.WriteLine("4-Mostrar caja");
-            Console.WriteLine("5-Finalizar jornada del dia");
+
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.Clear();
+            Console.WindowHeight = 34;
+            Console.WindowWidth = 117;
+
+            Marco();
+            Console.CursorTop = 2;
+            Console.WriteLine("          \n           ░                        \n           ░             CIRCUITO AVENTURA\n", Console.ForegroundColor = ConsoleColor.White);
+            Console.WriteLine("           ░                                                    ");
+            Console.WriteLine("           ░                                                    ");
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("           ░            1-Ingresar pase individual\n");
+            Console.WriteLine("           ░            2-Ingresar pase grupal: menor a 4 personas\n");
+            Console.WriteLine("           ░            3-Ingresar pase grupal: 4 a 10 personas\n");
+            Console.WriteLine("           ░            4-Mostrar caja\n");
+            Console.WriteLine("           ░            5-Finalizar jornada del dia\n");
             ConsoleKeyInfo opcion = Console.ReadKey();
             Console.Clear();
             while (true)
@@ -113,28 +94,55 @@ namespace Tp_Numero_2.Clases
                         break;
 
                 }
-                Console.WriteLine("1-Ingresar pase individual");
-                Console.WriteLine("2-Ingresar pase grupal: menor a 4 personas");
-                Console.WriteLine("3-Ingresar pase grupal: 4 a 10 personas");
-                Console.WriteLine("4-Mostrar caja");
-                Console.WriteLine("5-Finalizar jornada del dia");
-                opcion = Console.ReadKey();
+
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.Clear();
+                Console.WindowHeight = 34;
+                Console.WindowWidth = 117;
+
+                Marco();
+                Console.CursorTop = 2;
+                Console.WriteLine("          \n           ░                        \n           ░             CIRCUITO AVENTURA\n", Console.ForegroundColor = ConsoleColor.White);
+                Console.WriteLine("           ░                                                    ");
+                Console.WriteLine("           ░                                                    ");
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("           ░            1-Ingresar pase individual\n");
+                Console.WriteLine("           ░            2-Ingresar pase grupal: menor a 4 personas\n");
+                Console.WriteLine("           ░            3-Ingresar pase grupal: 4 a 10 personas\n");
+                Console.WriteLine("           ░            4-Mostrar caja\n");
+                Console.WriteLine("           ░            5-Finalizar jornada del dia\n");
+                 opcion = Console.ReadKey();
                 Console.Clear();
 
             }
         }
-
-        void FinalizarDia()
+       
+        void Marco()
         {
-            int cantPersonasFinal = cantPersonasPasaporte + cantPersonasGrupoMenosde4 + individuales;
-            double promedio = totalEdades / cantPersonasFinal;
-            Console.WriteLine("El Promedio de edades es de:    {0}", promedio);
-            Console.WriteLine("La cantidad de pasaportes es:   {0}", cantPasaportes);
-            Console.WriteLine("Personas utilizando pasaportes: {0}", cantPersonasPasaporte);
-            Console.WriteLine("Total de Grupos: {0}", totalGrupos);
-            Console.WriteLine("Total de Grupos: {0}", totalGrupos);
-        }
 
+            for (int y = 1; y < 23; y++)
+            {
+                Console.CursorLeft = 11;
+                Console.CursorTop = y;
+                Console.Write("░");
+                Console.CursorLeft = 69;
+                Console.Write("░");
+
+            }
+
+            for (int x = 11; x < 69; x++)
+            {
+
+                Console.CursorLeft = x;
+                Console.CursorTop = 1;
+                Console.Write("░");
+                Console.CursorTop = 22;
+                Console.Write("░");
+
+            }
+
+
+        }
 
         public int CasoPasaporte(int cantPersonas = 0)
         {
@@ -309,20 +317,12 @@ namespace Tp_Numero_2.Clases
             return cantPersonasAfueraPasaporte;
 
 
-
-
-
-
-
-
-
         }
 
 
 
         public void CasoGrupalMenos4()
         {
-            int edad = 0;
             bool hayUnMayor = false;
             bool hayMenores = false;
             int cantPersonas;
@@ -476,7 +476,6 @@ namespace Tp_Numero_2.Clases
             return entradatotal;
         }
 
-
         private void ConfirmarCompra(double total, int cantpersonas, double descuentototal = 0.00)
         {
             Console.Clear();
@@ -506,31 +505,27 @@ namespace Tp_Numero_2.Clases
 
             Console.WriteLine("Impresión finalizada.");
             Console.Clear();
-
-            //{
-            //    Console.WriteLine("Imprimiendo...");
-
-            //    // Reproducir el sonido de la impresora
-            //    Console.Beep(150, 2000);
             contFactura++;
             totalGrupos++;
 
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            Marco();
             string numeroFac = GenerarNumeroFactura(contFactura);
-            Console.WriteLine("Factura  {0}", numeroFac);
-            Console.WriteLine("--------------------");
-            Console.WriteLine($"Fecha:   {DateTime.Now.ToString()}");
-            Console.WriteLine("--------------------");
-            Console.WriteLine("Descripción           Precio - Entrada: {0:C}", entrada);
-            Console.WriteLine("--------------------");
-            Console.WriteLine("Total sin Descuento        {0:C}", (descuentototal + total));
-            Console.WriteLine("Descuento Total            {0:C}", descuentototal);
-            Console.WriteLine("--------------------");
-            Console.WriteLine("Total:                {0:C}", total);
+            Console.CursorTop = 2;
+            Console.WriteLine("\n           ░            Factura  {0}\n", numeroFac);
+
+            Console.WriteLine($"           ░            Fecha:   {DateTime.Now.ToString()}\n");
+            Console.WriteLine("           ░    Descripción           Precio - Entrada: {0:C}", entrada);
+            Console.WriteLine("           ░           Total sin Descuento        {0:C}\n", (descuentototal + total));
+            Console.WriteLine("           ░           Descuento Total            {0:C}\n", (descuentototal));
+            Console.WriteLine("           ░           Total:             {0:C}\n", (total));
             Console.WriteLine(" ");
             Console.WriteLine(" ");
             Console.WriteLine(" ");
 
-            Console.WriteLine(" Precione una tecla para continuar: ");
+            Console.WriteLine("           ░      Precione una tecla para continuar: ");
 
             Console.ReadKey();
             Console.Clear();
@@ -605,50 +600,50 @@ namespace Tp_Numero_2.Clases
                 Console.Clear();
             }
         }
-        // Al final Mostrar todo esto: CAPO
-        //        Total de grupos: 4 - Personas total: 16
-        //         Recaudación: con Pasaportes: $ 13.665,00 Individuales: $4500,00 Total: $ 18.165,00
-        //         Personas con pasaporte: 13. Personas entre 10 y 15: 2
-        //         Edad promedio: 16,375
         public void MostrarResultados()
         {
+            Console.ResetColor();
+            Console.Clear();
             int totalPersonas = cantPersonasPasaporte + cantPersonasGrupoMenosde4 + individuales;
             if (totalPersonas != 0)
             {
-
-            double totalIndividuales = (individuales + cantPersonasGrupoMenosde4) * entrada;
-            double totalIndividualesPasaporte = totalIndividuales + recaudacionPasaporte;
-            double edadPromedio = ((double)totalEdades / totalPersonas);
-            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-            Console.WriteLine("El total de grupos fue de: {0} - Personas totales: {1}", totalGrupos, totalPersonas);
-            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-            Console.WriteLine("Recaudación: con Pasaportes: {0:C2} - Individuales: {1:C2} - - - Total: {2:C2}", recaudacionPasaporte, totalIndividuales, totalIndividualesPasaporte);
-            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-            Console.WriteLine("Personas con Pasaporte: {0}. Personas entre 10 y 15: {1}", cantPersonasPasaporte, EdadEntre10y15);
-            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-            Console.WriteLine("Edad Promedio: {0:F3}", edadPromedio);
-            Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-            Console.WriteLine("      ");
-            Console.WriteLine("      ");
-            Console.WriteLine("      ");
-            Console.WriteLine("      ");
-            Console.WriteLine("      ");
-            } else
+                double totalIndividuales = (individuales + cantPersonasGrupoMenosde4) * entrada;
+                double totalIndividualesPasaporte = totalIndividuales + recaudacionPasaporte;
+                double edadPromedio = ((double)totalEdades / totalPersonas);
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────┐");
+                Console.WriteLine("El total de grupos fue de: {0} │ Personas totales: {1}│                                │ ", totalGrupos, totalPersonas);
+                Console.WriteLine("────────────────────────────────────────────────────────────────────────────────── │");
+                Console.WriteLine("Recaudación: con Pasaportes: {0:C2} │ Individuales: {1:C2} │ Total:{2:C2}  │", recaudacionPasaporte, totalIndividuales, totalIndividualesPasaporte);
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────│ ");
+                Console.WriteLine("Personas con Pasaporte: {0}.│ Personas entre 10 y 15: {1}                              │", cantPersonasPasaporte, EdadEntre10y15);
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────│ ");
+                Console.WriteLine("Edad Promedio: {0} │                                                                │", edadPromedio);
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────┘ ");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
+                Console.WriteLine("      ");
+            }
+            else
             {
-                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-                Console.WriteLine("El total de grupos fue de: {0} - Personas totales: {1}", 0.00, 0.00);
-                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-                Console.WriteLine("Recaudación: con Pasaportes: {0:C2} - Individuales: {1:C2} - - - Total: {2:C2}", 0.00, 0.00, 0.00);
-                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-                Console.WriteLine("Personas con Pasaporte: {0}. Personas entre 10 y 15: {1}", 0.00, 0.00);
-                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
-                Console.WriteLine("Edad Promedio: {0:F2}", 0.00);
-                Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - -");
+                Console.ResetColor();
+                Console.Clear();
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────┐");
+                Console.WriteLine("El total de grupos fue de: {0} │ Personas totales: {1}│                                │ ", 0.00, 0.00);
+                Console.WriteLine("────────────────────────────────────────────────────────────────────────────────── │");
+                Console.WriteLine("Recaudación: con Pasaportes: {0:C2} │ Individuales: {1:C2} │ Total:{2:C2}          │", 0.00, 0.00, 0.00);
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────│ ");
+                Console.WriteLine("Personas con Pasaporte: {0}.│ Personas entre 10 y 15: {1}                              │", 0.00, 0.00);
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────│ ");
+                Console.WriteLine("Edad Promedio: {0} │                                                                 │", 0.00);
+                Console.WriteLine("───────────────────────────────────────────────────────────────────────────────────┘ ");
                 Console.WriteLine("      ");
                 Console.WriteLine("      ");
                 Console.WriteLine("      ");
                 Console.WriteLine("      ");
                 Console.WriteLine("      ");
+
             }
 
             Console.WriteLine(" Precione una tecla para Salir: ");

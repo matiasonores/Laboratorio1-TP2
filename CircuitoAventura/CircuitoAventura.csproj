@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{42E024DE-9000-4C29-B0AA-838141ACC128}</ProjectGuid>
+    <ProjectGuid>{60FDDB27-E38D-47CC-9822-1BB6CCE98F9E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Tp_Numero_2</RootNamespace>
-    <AssemblyName>Tp Numero 2</AssemblyName>
+    <RootNamespace>CircuitoAventura</RootNamespace>
+    <AssemblyName>CircuitoAventura</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\CircuitoAventura.cs" />
+    <Compile Include="CircuitoAventura.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

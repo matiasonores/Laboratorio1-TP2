@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tp_Numero_2.Clases;
+
 
 namespace Ejercicio_Parque
 {
@@ -11,9 +11,8 @@ namespace Ejercicio_Parque
     {
         static void Main(string[] args)
         {
-           CircuitoAventura circuitoAventura = new CircuitoAventura();
+            CircuitoAventura circuitoAventura = new CircuitoAventura();
             circuitoAventura.Iniciar();
-            //circuitoAventura.MostrarResultados();
             Console.ReadKey();
         }
 

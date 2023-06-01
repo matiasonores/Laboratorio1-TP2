@@ -15,7 +15,15 @@ namespace Ejercicio_Parque
             circuitoAventura.Iniciar();
             Console.ReadKey();
         }
-
+        public static bool VerficarNegativo(int num)
+        {
+            bool confirmacionNegativo;
+            if (num < 1) 
+            { 
+                confirmacionNegativo = false;
+            } 
+            else confirmacionNegativo= true;
+            return confirmacionNegativo;
+        }
     }
-
 }

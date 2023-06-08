@@ -11,10 +11,11 @@ Caso 1: grupo 1- Entrada grupal- edades: 45,17,19,22; a pagar:5100,0;
         personas con pasaporte 13-Personas entre 10 y 15:1;
         edad promedio:20,8.
         
-Caso 2: grupo 1- Entrada grupal- edades: 45,17,19,22; a pagar:5100,0;
-        grupo 2- Entrada grupal Menor 4- edades: 21,25; a pagar:3000,0;
-        grupo 3- Entrada grupal,pasaporte- edades: 55,13,2,22; a pagar:3720,0;
-        grupo 4- Entrada grupal, pasaporte- edades: 45,17,19,22; a pagar:3487,50;
+Caso 2: grupo 1- Entrada grupal- edades: 19, 19, 20, 21, 22; a pagar:$6.375,0;
+        grupo 2- Entrada grupal Menor 4- edades: 22, 20, 45, 44; a pagar:$5.100,0;
+        grupo 3- Entrada grupal,pasaporte- edades: 1, 2, 4, 21 a pagar:2.212,50;
+        grupo 4- Entrada grupal, pasaporte- edades: 33, 42, 20, 5; a pagar:4.462,5;
+        grupo 5- Entrada grupal, pasaporte- edades: 17, 18, 19, 20; a pagar:$5.100;
         
         Total grupos:5- Personas totales:21; recaudacion con pasaporte 23250,0; individuales 0-total:23250,0;
         personas con pasaporte 21-Personas entre 10 y 15:0;

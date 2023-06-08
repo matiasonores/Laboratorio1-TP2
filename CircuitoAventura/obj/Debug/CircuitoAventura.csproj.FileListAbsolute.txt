@@ -1,0 +1,16 @@
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\bin\Debug\CircuitoAventura.exe.config
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\bin\Debug\CircuitoAventura.exe
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\bin\Debug\CircuitoAventura.pdb
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\obj\Debug\CircuitoAventura.csproj.AssemblyReference.cache
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\obj\Debug\CircuitoAventura.csproj.SuggestedBindingRedirects.cache
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\obj\Debug\CircuitoAventura.csproj.CoreCompileInputs.cache
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\obj\Debug\CircuitoAventura.exe
+C:\Users\TUP^\Desktop\Iván\UTNGuias\Laboratorio\Tp2_Lab1\CircuitoAventura\obj\Debug\CircuitoAventura.pdb
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\bin\Debug\CircuitoAventura.exe.config
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\bin\Debug\CircuitoAventura.exe
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\bin\Debug\CircuitoAventura.pdb
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\obj\Debug\CircuitoAventura.csproj.AssemblyReference.cache
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\obj\Debug\CircuitoAventura.csproj.SuggestedBindingRedirects.cache
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\obj\Debug\CircuitoAventura.csproj.CoreCompileInputs.cache
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\obj\Debug\CircuitoAventura.exe
+C:\Users\TUP^\Desktop\Tp2\CircuitoAventura\obj\Debug\CircuitoAventura.pdb

@@ -25,7 +25,7 @@ public class CircuitoAventura
     private void MostrarMenu()
     {
 
-
+        bool salir = false;
         Console.BackgroundColor = ConsoleColor.Blue;
         Console.Clear();
         Console.WindowHeight = 34;
@@ -80,10 +80,10 @@ public class CircuitoAventura
                     break;
 
                 case ConsoleKey.D5:
-                    string salir;
+                    string salir2;
                     Console.WriteLine("Esta seguro que quiere finalizar la jornada? Presione S para confirmar");
-                    salir = Console.ReadLine();
-                    if (salir.ToLower() == "s")
+                    salir2 = Console.ReadLine();
+                    if (salir2.ToLower() == "s")
                     {
                         MostrarResultados();
                         return;
@@ -97,6 +97,10 @@ public class CircuitoAventura
 
                     break;
 
+            }
+            if (salir == true)
+            {
+                return;
             }
 
             Console.BackgroundColor = ConsoleColor.Blue;
@@ -161,6 +165,7 @@ public class CircuitoAventura
         int edadtotal = 0;
         int contPersonas = 0;
         double descuentoTotal = 0;
+        bool retornar = false;
 
         if (cantPersonas == 0)
         {
@@ -186,145 +191,175 @@ public class CircuitoAventura
                         case "s":
                             Console.Clear();
                             CasoPasaporte();
-                            return 0;
+                            retornar = true;
+                            break;
                         case "n":
                             Console.Clear();
-                            return 0;
+                            retornar = true;
+                            break;
 
+                    }
+                    if (retornar == true)
+                    {
+                        salir = true;
                     }
                 }
             }
-
-            if (cantPersonas >= 10)
-            {
-                cantPersonasAfueraPasaporte = cantPersonas - 10;
-                cantPersonas = 10;
-            }
-            bool sePuede;
-            Console.WriteLine("Ingrese Cantidad de Menores a 16 años que van a ingresar");
-            int cantMenores16anios = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Ingrese Cantidad de Mayores responsables que van a ingresar");
-            int cantMayoresa21anios = Convert.ToInt32(Console.ReadLine());
-            if (cantMayoresa21anios > 1)
-            {
-                sePuede = true;
-            }
-            else if (cantMenores16anios > 5 && cantMayoresa21anios < 2)
-            {
-                sePuede = false;
-            }
-            else if (cantMenores16anios <= 5 && cantMayoresa21anios == 1)
-            {
-                sePuede = true;
-            }
-            else
-            {
-                sePuede = true;
-            }
-            // termina prueba
-            Console.Clear();
-            if (!sePuede)
-            {
-                Console.WriteLine("No se cumple con las normas de Acceso al Parque!\nRecuerda que necesitas tener 1 adulto cada 5 menores de 16 años");
-                Console.WriteLine();
-                Console.WriteLine("Precione una tecla para volver al Menu Principal.");
-                Console.ReadKey();
-                Console.Clear();
-                return 0;
-            }
-            Console.WriteLine("Ingrese Edades:  ");
-            for (int i = 0; i < cantPersonas; i++)
+            if (retornar != true)
             {
 
-                contPersonas++;
-                double total = 0;
-                int edad = 0;
-                Console.WriteLine("Ingrese la edad de la persona: {0}", (i + 1));
-                edad = Convert.ToInt32(Console.ReadLine());
-                bool verificacion;
-                verificacion = Program.VerficarNegativo(edad);
-                while (verificacion == false)
+
+
+                if (cantPersonas >= 10)
                 {
-                    Console.WriteLine("Ingreso una edad no valida \n\n Ingrese nuevamente Edad Visitante: " + (i + 1));
-                    edad = Convert.ToInt32(Console.ReadLine());
-                    verificacion = Program.VerficarNegativo(edad);
+                    cantPersonasAfueraPasaporte = cantPersonas - 10;
+                    cantPersonas = 10;
                 }
-                if (edad >= 21)
+                bool sePuede;
+                Console.WriteLine("Ingrese Cantidad de Menores a 16 años que van a ingresar");
+                int cantMenores16anios = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Ingrese Cantidad de Mayores responsables que van a ingresar");
+                int cantMayoresa21anios = Convert.ToInt32(Console.ReadLine());
+                if (cantMayoresa21anios > 1)
                 {
-                    cantMayores21++;
-                    total = 1500;
+                    sePuede = true;
                 }
-                else if (edad >= 16)
+                else if (cantMenores16anios > 5 && cantMayoresa21anios < 2)
                 {
-                    cantMenores16++;
-                    total = 1500;
+                    sePuede = false;
+                }
+                else if (cantMenores16anios <= 5 && cantMayoresa21anios == 1)
+                {
+                    sePuede = true;
                 }
                 else
                 {
-
-                    cantMenores++;
-                    total = CalcularDescuentoMenores(edad);
-                    //descuentoTotal += entrada - total;
-                    if (edad >= 10 && edad <= 15)
-                    {
-                        cantMenoresEntre10y15++;
-                    }
-                    if (edad <= 3)
-                    {
-                        cantMenores3++;
-
-                    }
+                    sePuede = true;
                 }
-                edadtotal += edad;
-                totalrecaudado += total;
+                // termina prueba
+                Console.Clear();
+                if (!sePuede)
+                {
+                    Console.WriteLine("No se cumple con las normas de Acceso al Parque!\nRecuerda que necesitas tener 1 adulto cada 5 menores de 16 años");
+                    Console.WriteLine();
+                    Console.WriteLine("Precione una tecla para volver al Menu Principal.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    return 0;
+                }
+                Console.WriteLine("Ingrese Edades:  ");
+                for (int i = 0; i < cantPersonas; i++)
+                {
+
+                    contPersonas++;
+                    double total = 0;
+                    int edad = 0;
+                    Console.WriteLine("Ingrese la edad de la persona: {0}", (i + 1));
+                    edad = Convert.ToInt32(Console.ReadLine());
+                    bool verificacion;
+                    verificacion = Program.VerficarNegativo(edad);
+                    while (verificacion == false)
+                    {
+                        Console.WriteLine("Ingreso una edad no valida \n\n Ingrese nuevamente Edad Visitante: " + (i + 1));
+                        edad = Convert.ToInt32(Console.ReadLine());
+                        verificacion = Program.VerficarNegativo(edad);
+                    }
+                    if (edad >= 21)
+                    {
+                        cantMayores21++;
+                        total = 1500;
+                    }
+                    else if (edad >= 16)
+                    {
+                        cantMenores16++;
+                        total = 1500;
+                    }
+                    else
+                    {
+
+                        cantMenores++;
+                        total = CalcularDescuentoMenores(edad);
+                        //descuentoTotal += entrada - total;
+                        if (edad >= 10 && edad <= 15)
+                        {
+                            cantMenoresEntre10y15++;
+                        }
+                        if (edad <= 3)
+                        {
+                            cantMenores3++;
+
+                        }
+                    }
+                    edadtotal += edad;
+                    totalrecaudado += total;
+                }
+                double correccionDescMen3 = cantMenores3 * (150 * 0.15);
+                // 15 % descuento
+                double descuento = totalrecaudado * 0.15;
+                descuentoTotal += (descuento - correccionDescMen3);
+                totalrecaudado -= descuento;
+                totalrecaudado += correccionDescMen3;
+                Console.WriteLine("El monto a pagar es {0:C2}. Desea proseguir? (S/N)", totalrecaudado);
+                string compra = Console.ReadLine();
+                compra = compra.ToLower();
+                bool salir = true;
+                bool salirPagando = false;
+                while (salir)
+                {
+
+                    switch (compra)
+                    {
+                        case "s":
+                            {
+                                Console.Clear();
+                                ConfirmarCompra(totalrecaudado, contPersonas, descuentoTotal);
+                                EdadEntre10y15 += cantMenoresEntre10y15;
+                                recaudacionTotal += totalrecaudado;
+                                recaudacionPasaporte += totalrecaudado;
+                                totalEdades += edadtotal;
+                                cantPersonasPasaporte += contPersonas;
+                                cantPasaportes++;
+                                salir = false;
+                                salirPagando = true;
+                                break;
+
+                            }
+                        case "n":
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Se regresará al menu principal sin efectuar la compra");
+                                salir = false;
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Ingreso un Caracter invalido, ingrese nuevamente porfavor: ");
+                                Console.WriteLine("El monto a pagar es ${0:C2}. Desea proseguir? (S/N)", totalrecaudado);
+                                break;
+                            }
+
+                    }
+                    if (salirPagando == false)
+                    {
+                        cantPersonasAfueraPasaporte = 0;
+                    }
+
+                }
             }
-            double correccionDescMen3 = cantMenores3 * (150 * 0.15);
-            // 15 % descuento
-            double descuento = totalrecaudado * 0.15;
-            descuentoTotal += (descuento - correccionDescMen3);
-            totalrecaudado -= descuento;
-            totalrecaudado += correccionDescMen3;
-            Console.WriteLine("El monto a pagar es {0:C2}. Desea proseguir? (S/N)", totalrecaudado);
-            string compra = Console.ReadLine();
-            compra = compra.ToLower();
-            switch (compra)
+            else
             {
-                case "s":
-                    {
-                        Console.Clear();
-                        ConfirmarCompra(totalrecaudado, contPersonas, descuentoTotal);
-                        EdadEntre10y15 += cantMenoresEntre10y15;
-                        recaudacionTotal += totalrecaudado;
-                        recaudacionPasaporte += totalrecaudado;
-                        totalEdades += edadtotal;
-                        cantPersonasPasaporte += contPersonas;
-                        cantPasaportes++;
-                        return cantPersonasAfueraPasaporte;
-
-                    }
-                case "n":
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Se regresará al menu principal sin efectuar la compra");
-                        return 0;
-                    }
-                default:
-                    {
-                        Console.WriteLine("Ingreso un Caracter invalido, ingrese nuevamente porfavor: ");
-                        Console.WriteLine("El monto a pagar es ${0:C2}. Desea proseguir? (S/N)", totalrecaudado);
-                        break;
-                    }
-
+                cantPersonasAfueraPasaporte = 0;
             }
-            return cantPersonasAfueraPasaporte;
         }
         else
         {
             Console.Clear();
             Console.WriteLine("Ingreso un numero invalido \n\n Precione una tecla para continuar");
             Console.ReadKey();
-            return 0;
+            cantPersonasAfueraPasaporte = 0;
+
         }
+        return cantPersonasAfueraPasaporte;
 
     }
 
@@ -352,20 +387,25 @@ public class CircuitoAventura
                     Console.WriteLine("Detectamos que ingreso mas de 3 personas, Desea corregir la cantidad? (S/N)");
                     siOno = Console.ReadLine();
                     siOno = siOno.ToLower();
-                    while (true)
+                    bool salir = true;
+                    while (salir)
                     {
                         switch (siOno)
                         {
                             case "s":
                                 CasoGrupalMenos4();
-                                return;
+                                salir = false;
+                                break;
                             case "n":
-                                //CasoPasaporte();
+                                salir = false;
                                 break;
                         }
-                        Console.WriteLine("Ingreso un Caracter no Valido Intentelo de nuevo");
-                        Console.WriteLine("Detectamos que ingreso mas de 3 personas, Desea corregir la cantidad? (S/N)");
-                        siOno = Console.ReadLine();
+                        if (salir == true)
+                        {
+                            Console.WriteLine("Ingreso un Caracter no Valido Intentelo de nuevo");
+                            Console.WriteLine("Detectamos que ingreso mas de 3 personas, Desea corregir la cantidad? (S/N)");
+                            siOno = Console.ReadLine();
+                        }
                     }
                 }
                 else
@@ -375,21 +415,29 @@ public class CircuitoAventura
                     Console.WriteLine("Detectamos que ingreso 1 persona, Desea corregir la cantidad? (S/N)");
                     siOno = Console.ReadLine();
                     siOno = siOno.ToLower();
-                    while (true)
+                    bool salir = true;
+                    while (salir)
                     {
                         switch (siOno)
                         {
                             case "s":
                                 CasoGrupalMenos4();
-                                return;
+                                salir = false;
+                                break;
 
                             case "n":
+                                Console.Clear();
+                                Console.WriteLine("Detectamos 1 Persona Redirigiendo al Caso Individual.\n");
                                 CasoIndividual();
-                                return;
+                                salir = false;
+                                break;
                         }
-                        Console.WriteLine("Ingreso un Caracter no Valido Intentelo de nuevo");
-                        Console.WriteLine("Detectamos que ingreso 1 persona, Desea corregir la cantidad? (S/N)");
-                        siOno = Console.ReadLine();
+                        if (salir == true)
+                        {
+                            Console.WriteLine("Ingreso un Caracter no Valido Intentelo de nuevo");
+                            Console.WriteLine("Detectamos que ingreso 1 persona, Desea corregir la cantidad? (S/N)");
+                            siOno = Console.ReadLine();
+                        }
                     }
                 }
 
@@ -450,24 +498,44 @@ public class CircuitoAventura
                     Console.WriteLine("El monto a pagar es ${0}. Desea proseguir? (S/N)", total);
                     string compra = Console.ReadLine();
                     compra = compra.ToLower();
-                    switch (compra)
+                    bool salir = true;
+                    while (salir)
                     {
-                        case "s":
-                            {
-                                Console.Clear();
-                                ConfirmarCompra(total, cantPersonas, descuentoTotal);
-                                EdadEntre10y15 += contador10y15;
-                                recaudacionTotal += total;
-                                totalEdades += acumuladorEdades;
-                                cantPersonasGrupoMenosde4 += cantPersonas;
+
+
+                        switch (compra)
+                        {
+                            case "s":
+                                {
+                                    Console.Clear();
+                                    ConfirmarCompra(total, cantPersonas, descuentoTotal);
+                                    EdadEntre10y15 += contador10y15;
+                                    recaudacionTotal += total;
+                                    totalEdades += acumuladorEdades;
+                                    cantPersonasGrupoMenosde4 += cantPersonas;
+                                    salir = false;
+                                    break;
+                                }
+                            case "n":
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Se regresará al menu principal sin efectuar la compra");
+                                    salir = false;
+                                }
                                 break;
-                            }
-                        case "n":
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Se regresará al menu principal sin efectuar la compra");
-                            }
-                            break;
+
+                            default:
+                                {
+                                    Console.WriteLine("Ingreso un Caracter invalido, ingrese nuevamente porfavor: ");
+                                    Console.WriteLine("El monto a pagar es ${0:C2}. Desea proseguir? (S/N)", total);
+                                    break;
+                                }
+                        }
+                        if (salir == true)
+                        {
+                            compra = Console.ReadLine();
+                            compra = compra.ToLower();
+                        }
                     }
 
                 }
@@ -559,7 +627,7 @@ public class CircuitoAventura
 
     private string GenerarNumeroFactura(int numero)
     {
-  
+
 
         string numeroFactura = numero.ToString().PadLeft(6, '0');
 
@@ -583,7 +651,8 @@ public class CircuitoAventura
 
                 ConsoleKeyInfo opcion = Console.ReadKey();
                 Console.Clear();
-                while (true)
+                bool salir = true;
+                while (salir)
                 {
 
                     switch (opcion.Key)
@@ -591,17 +660,23 @@ public class CircuitoAventura
                         case ConsoleKey.D1:
                             Console.Clear();
                             CasoIndividual();
-                            return;
+                            salir = false;
+                            break;
 
                         case ConsoleKey.D2:
                             Console.Clear();
-                            return;
+                            salir = false;
+                            break;
 
                     }
-                    Console.WriteLine("Ingreso una opcion invalida, intentalo nuevamente");
-                    Console.WriteLine("¿Desea reingresar la edad (1) o Regresar al menu principal (2)?");
-                    opcion = Console.ReadKey();
-                    Console.Clear();
+                    if (salir == true)
+                    {
+
+                        Console.WriteLine("Ingreso una opcion invalida, intentalo nuevamente");
+                        Console.WriteLine("¿Desea reingresar la edad (1) o Regresar al menu principal (2)?");
+                        opcion = Console.ReadKey();
+                        Console.Clear();
+                    }
                 }
             }
             else
@@ -672,7 +747,7 @@ public class CircuitoAventura
             Console.WriteLine("────────────────────────────────────────────────────────────────────────────────────────────────────────│ ");
             Console.WriteLine("Personas con Pasaporte: {0}.│ Personas entre 10 y 15: {1}                              │", 0.00, 0.00);
             Console.WriteLine("────────────────────────────────────────────────────────────────────────────────────────────────────────│ ");
-            Console.WriteLine("Edad Promedio: {0} │                                                                 │", 0.00);
+            Console.WriteLine("Edad Promedio: {0:C2} │                                                                 │", 0.00);
             Console.WriteLine("─────────────────────────────────────────────────────────────────────────────────────────────────────── ┘ ");
             Console.WriteLine("      ");
             Console.WriteLine("      ");
